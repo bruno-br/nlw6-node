@@ -25,7 +25,7 @@ class CreateComplimentService {
       throw new Error("Incorrect User Receiver");
     }
 
-    const userReceiverExists = usersRepositories.findOne(user_receiver);
+    const userReceiverExists = await usersRepositories.findOne(user_receiver);
 
     if (!userReceiverExists) {
       throw new Error("User Receiver does not exist!");
