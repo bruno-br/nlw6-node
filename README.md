@@ -23,3 +23,11 @@
   - [x] Não é permitido cadastrar elogios para usuários inválidos
 
   - [x] O usuário precisa estar logado na aplicação.
+
+## Milha Extra
+
+- [x] Criação de Erros Personalizados
+
+- [x] Possibilidade de definir um statusCode específico para o Erro
+
+- [x] Criação de Middleware para tratar Erros e retornar resposta com o statusCode desejado
