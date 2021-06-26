@@ -1,7 +1,4 @@
-import nodemailer, { Transporter } from "nodemailer";
-import handlebars from "handlebars";
 import { resolve } from "path";
-import fs from "fs";
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 import { TagsRepositories } from "../repositories/TagsRepositories";

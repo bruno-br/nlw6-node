@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { findMissingParams } from "../helpers/FindMissingParams";
+import { findMissingParams } from "../helpers/findMissingParams";
 import { CreateUserService } from "../services/CreateUserService";
 
 class CreateUserController {
