@@ -1,8 +1,8 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 import { hash } from "bcryptjs";
-import { IncorrectParamError } from "../errors/IncorrectParamError";
-import { EntityAlreadyExistsError } from "../errors/EntityAlreadyExistsError";
+import { IncorrectParamError } from "../errors/httpError/IncorrectParamError";
+import { EntityAlreadyExistsError } from "../errors/httpError/EntityAlreadyExistsError";
 
 interface IUserRequest {
   name: string;

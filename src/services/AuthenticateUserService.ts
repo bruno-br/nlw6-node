@@ -2,7 +2,7 @@ import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
-import { IncorrectParamError } from "../errors/IncorrectParamError";
+import { IncorrectParamError } from "../errors/httpError/IncorrectParamError";
 
 interface IAuthenticateRequest {
   email: string;

@@ -1,6 +1,6 @@
 import { getCustomRepository } from "typeorm";
-import { EntityDoesNotExistError } from "../errors/EntityDoesNotExistError";
-import { IncorrectParamError } from "../errors/IncorrectParamError";
+import { EntityDoesNotExistError } from "../errors/httpError/EntityDoesNotExistError";
+import { IncorrectParamError } from "../errors/httpError/IncorrectParamError";
 import { ComplimentsRepositories } from "../repositories/ComplimentsRepositories";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 

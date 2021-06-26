@@ -1,6 +1,6 @@
 import { getCustomRepository } from "typeorm";
-import { EntityAlreadyExistsError } from "../errors/EntityAlreadyExistsError";
-import { IncorrectParamError } from "../errors/IncorrectParamError";
+import { EntityAlreadyExistsError } from "../errors/httpError/EntityAlreadyExistsError";
+import { IncorrectParamError } from "../errors/httpError/IncorrectParamError";
 import { TagsRepositories } from "../repositories/TagsRepositories";
 
 class CreateTagService {
