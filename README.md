@@ -31,3 +31,7 @@
 - [x] Possibilidade de definir um statusCode específico para o Erro
 
 - [x] Criação de Middleware para tratar Erros e retornar resposta com o statusCode desejado
+
+- [x] Validação de E-mail quando um usuário é criado
+
+- [x] Envio de E-mail para o usuário quando ele recebe um elogio
