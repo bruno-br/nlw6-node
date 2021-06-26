@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
+import { UnauthorizedError } from "../errors/httpError/UnauthorizedError";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 
 export async function ensureAdmin(
@@ -19,7 +20,5 @@ export async function ensureAdmin(
     return next();
   }
 
-  return response.status(401).json({
-    error: "Unauthorized",
-  });
+  throw new UnauthorizedError();
 }

@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
+import { UnauthorizedError } from "../errors/httpError/UnauthorizedError";
 
 interface IPayload {
   sub: string;
@@ -15,7 +16,7 @@ export function ensureAuthenticated(
 
   // Validar se o token está preenchido
   if (!authToken) {
-    return response.status(401).end();
+    throw new UnauthorizedError();
   }
 
   const token = authToken.replace("Bearer ", "");
@@ -30,7 +31,7 @@ export function ensureAuthenticated(
     // Recuperar informações do usuário
     request.user_id = sub;
   } catch (err) {
-    return response.status(401).end();
+    throw new UnauthorizedError();
   }
 
   return next();
