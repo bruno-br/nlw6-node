@@ -1,6 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import { EntityAlreadyExistsError } from "../errors/httpError/EntityAlreadyExistsError";
-import { IncorrectParamError } from "../errors/httpError/IncorrectParamError";
+import { MissingParamError } from "../errors/httpError/MissingParamError";
 import { TagsRepositories } from "../repositories/TagsRepositories";
 
 class CreateTagService {
@@ -8,7 +8,7 @@ class CreateTagService {
     const tagsRepositories = getCustomRepository(TagsRepositories);
 
     if (!name) {
-      throw new IncorrectParamError("name");
+      throw new MissingParamError("name");
     }
 
     const tagAlreadyExists = await tagsRepositories.findOne({ name });

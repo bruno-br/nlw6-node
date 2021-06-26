@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { findMissingParams } from "../helpers/FindMissingParams";
 import { CreateUserService } from "../services/CreateUserService";
 
 class CreateUserController {
@@ -6,6 +7,8 @@ class CreateUserController {
     const { name, email, admin, password } = request.body;
 
     const createUserService = new CreateUserService();
+
+    findMissingParams(request.body, ["name", "email", "password"]);
 
     const user = await createUserService.execute({
       name,
