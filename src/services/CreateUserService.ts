@@ -3,6 +3,7 @@ import { UsersRepositories } from "../repositories/UsersRepositories";
 import { hash } from "bcryptjs";
 import { IncorrectParamError } from "../errors/httpError/IncorrectParamError";
 import { EntityAlreadyExistsError } from "../errors/httpError/EntityAlreadyExistsError";
+import validator from "validator";
 
 interface IUserRequest {
   name: string;
@@ -15,7 +16,7 @@ class CreateUserService {
   async execute({ name, email, admin = false, password }: IUserRequest) {
     const usersRepository = getCustomRepository(UsersRepositories);
 
-    if (!email) {
+    if (!email || !validator.isEmail(email)) {
       throw new IncorrectParamError("email");
     }
 
