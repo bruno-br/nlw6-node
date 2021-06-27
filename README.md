@@ -43,3 +43,12 @@
 - [x] Criar Landing Page no Front-End
 
 - [x] Criar botões para Fazer as Listagens de Tags, Usuários, Elogios Enviados e Recebidos no Front-End
+
+- [x] Adicionado envios de Elogio no Front-End
+
+## Preview
+
+<p align="middle">
+  <img src=".github/preview1.JPG">
+  <img src=".github/preview2.JPG">
+</div>
