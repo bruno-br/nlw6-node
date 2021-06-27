@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.12",
     "@types/jsonwebtoken": "^8.5.2",
     "@types/nodemailer": "^6.4.2",
@@ -21,6 +22,7 @@
     "@types/express-handlebars": "^5.3.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.4.0",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "express-handlebars": "^5.3.2",

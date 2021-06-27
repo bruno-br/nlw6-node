@@ -6,6 +6,7 @@ import { resolve } from "path";
 import { handleErrors } from "./middlewares/handleErrors";
 import exphbs from "express-handlebars";
 import "./database";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.engine(
   })
 );
 app.set("views", resolve(__dirname, "views"));
+
+app.use(cookieParser());
 
 app.use(express.json());
 
