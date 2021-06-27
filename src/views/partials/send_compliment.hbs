@@ -1,0 +1,86 @@
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+  <h6 class="border-bottom pb-2 mb-0">Enviar Elogio</h6>
+
+  <div class="pt-3">
+    <label for="listUsers" class="form-label">E-mail do Usuário a receber o Elogio</label>
+    <select id="listUsers" class="form-select">
+    </select>
+  </div>
+
+  <div class="pt-3">
+    <label for="complimentMessage" class="form-label">Mensagem do Elogio</label>
+    <input class="form-control" id="complimentMessage" placeholder="Escreva aqui a mensagem...">
+  </div>
+
+  <div class="pt-3">
+    <label for="listTags" class="form-label">Tag do Elogio</label>
+    <select id="listTags" class="form-select">
+    </select>
+  </div>
+
+  <div class="pt-3">
+    <button type="button" class="btn btn-lg btn-primary" onclick="send_compliment()">
+      Enviar Elogio
+    </button>
+  </div>
+
+</div>
+
+<script>
+
+  function send_compliment() {
+    let tag_id = document.querySelector("#listTags").value
+    let user_receiver = document.querySelector("#listUsers").value
+    let message = document.querySelector("#complimentMessage").value
+
+    let obj = { tag_id, user_receiver, message }
+
+    let access_token = getCookie('access_token')
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", '/compliments');
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.setRequestHeader("Authorization", `Bearer ${access_token}`);
+    xmlhttp.send(JSON.stringify(obj));
+
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+
+        if (xmlhttp.status !== 200) {
+          console.log('erro', xmlhttp)
+          return;
+        }
+
+        let response = JSON.parse(xmlhttp.responseText);
+
+        alert("Elogio enviado com sucesso!")
+      }
+    }
+  }
+
+  function load_options(href, selector, prop) {
+    let access_token = getCookie('access_token')
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", href);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.setRequestHeader("Authorization", `Bearer ${access_token}`);
+    xmlhttp.send();
+
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+
+        if (xmlhttp.status !== 200) {
+          return;
+        }
+
+        let response = JSON.parse(xmlhttp.responseText);
+
+        let optionsHtml = response.map(item => `<option value="${item.id}">${item[prop]}</option>`).join("")
+        let datalist_tags = document.querySelector(selector);
+        datalist_tags.innerHTML = optionsHtml;
+      }
+    }
+  }
+
+  load_options('/tags', "#listTags", "name")
+  load_options('/users', "#listUsers", "email")
+</script>
