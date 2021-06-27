@@ -2,10 +2,83 @@
   <h6 class="border-bottom pb-2 mb-0">Listar</h6>
 
   <div class="pt-3">
-    <button type="button" class="btn btn-lg btn-primary">Listar Tags</button>
-    <button type="button" class="btn btn-lg btn-primary">Listar Usuários</button>
-    <button type="button" class="btn btn-lg btn-primary">Listar Elogios Enviados</button>
-    <button type="button" class="btn btn-lg btn-primary">Listar Elogios Recebidos</button>
+
+    <button type="button" class="btn btn-lg btn-primary" onclick="list('Lista de Tags','/tags')">Listar Tags</button>
+
+    <button type="button" class="btn btn-lg btn-primary" onclick="list('Lista de Usuários','/users')">Listar
+      Usuários</button>
+
+    <button type="button" class="btn btn-lg btn-primary"
+      onclick="list('Lista de Elogios Enviados','/users/compliments/send')">Listar Elogios
+      Enviados</button>
+
+    <button type="button" class="btn btn-lg btn-primary"
+      onclick="list('Lista de elogios recebidos','/users/compliments/receive')">Listar Elogios
+      Recebidos</button>
+
   </div>
 
+  <div class="pt-3">
+    <table id="list" class="table">
+      <h3 id="list_name"></h3>
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+
 </div>
+
+<script>
+  function list(listName, href) {
+    let access_token = getCookie('access_token')
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", href);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.setRequestHeader("Authorization", `Bearer ${access_token}`);
+    xmlhttp.send();
+
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+
+        if (xmlhttp.status !== 200) {
+          return
+        }
+
+        let response = JSON.parse(xmlhttp.responseText)
+        let headers = Object.keys(response[0])
+
+        let table_rows = response.map(item => {
+          let table_row = "<tr>"
+          for (const header of headers) {
+
+            let headerText;
+            if (typeof item[header] == 'object') {
+              if (item[header].id) {
+                headerText = item[header].id
+              } else {
+                headerText = JSON.stringify(item[header])
+              }
+            } else {
+              headerText = item[header]
+            }
+
+            table_row += `<td>${headerText}</td > `
+
+          }
+          table_row += "</td>"
+          return table_row
+        }).join("")
+
+        let table_headers = `<tr> ${headers.map(header => `<th>${header}</th>`).join("")}</tr>`;
+        console.log(table_headers)
+        document.querySelector("#list_name").innerHTML = listName
+        document.querySelector("#list > thead").innerHTML = table_headers
+        console.log(document.querySelector("#list > thead").innerHTML)
+        document.querySelector("#list > tbody").innerHTML = table_rows
+
+      }
+    }
+
+  }
+</script>
