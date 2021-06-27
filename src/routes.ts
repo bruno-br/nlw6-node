@@ -9,6 +9,9 @@ import { ListUserSendComplimentsController } from "./controllers/ListUserSendCom
 import { ListUserReceiveComplimentsController } from "./controllers/ListUserReceiveComplimentsController";
 import { ListTagsController } from "./controllers/ListTagsController";
 import { ListUsersController } from "./controllers/ListUsersController";
+import { LandingPageController } from "./controllers/LandingPageController";
+import { LoginPageController } from "./controllers/LoginPageController";
+import { authFrontEnd } from "./middlewares/authFrontEnd";
 
 const router = Router();
 
@@ -24,8 +27,10 @@ const listUserReceiveComplimentsController =
   new ListUserReceiveComplimentsController();
 
 const listTagsController = new ListTagsController();
-
 const listUsersController = new ListUsersController();
+
+const landingPageController = new LandingPageController();
+const loginPageController = new LoginPageController();
 
 router.post("/users", createUserController.handle);
 
@@ -59,5 +64,9 @@ router.get(
   ensureAuthenticated,
   listUserReceiveComplimentsController.handle
 );
+
+router.get("/", authFrontEnd, landingPageController.handle);
+
+router.get("/login", loginPageController.handle);
 
 export { router };
