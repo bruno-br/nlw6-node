@@ -35,3 +35,11 @@
 - [x] Validação de E-mail quando um usuário é criado
 
 - [x] Envio de E-mail para o usuário quando ele recebe um elogio
+
+- [x] Criar Front-End com tela de Login
+
+- [x] Salvar Token nos cookies ao fazer Login
+
+- [x] Criar Landing Page no Front-End
+
+- [x] Criar botões para Fazer as Listagens de Tags, Usuários, Elogios Enviados e Recebidos no Front-End
